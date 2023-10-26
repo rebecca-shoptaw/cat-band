@@ -263,8 +263,8 @@ const CatBand = () => {
       </div>
       <div id="footer">
         <div id="grace-link" className="credits">
-          Cats by <br></br>
-          <a href={portfolio_link} target="_blank">
+          Cats by{" "}
+          <a href="" target="_blank">
             Grace Strehlow
           </a>
         </div>

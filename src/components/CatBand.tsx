@@ -162,7 +162,7 @@ const CatBand = () => {
               <img
                 id={`${cat.role}-cat`}
                 className="cat"
-                src={`/${cat.role}_cat.jpg`}
+                src={`./${cat.role}_cat.jpg`}
               />
               <audio id={cat.id} className="clip" src={cat.arr[0]} loop></audio>
               <p>{cat.id}</p>

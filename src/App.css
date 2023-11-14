@@ -2,16 +2,38 @@
   --back-color: #000;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: #444;
   background-image: url("https://cdn.tapetender70er.de/media/image/c2/e7/65/431462-A_Babylone_2880x1440@2x.jpg");
   background-blend-mode: multiply;
   background-size: 500px;
+  background-attachment: fixed;
+  background-repeat: repeat;
   font-family: "Poiret One", sans-serif;
 }
 
+main {
+  width: 100%;
+  height: 100%;
+}
+
+#cat-band {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s;
+  width: 100%;
+  height: 80vh;
+  margin-top: 5vh;
+  margin-bottom: 15vh;
+}
+
 #close-btn {
-  position: absolute;
+  position: fixed;
   color: #fff;
   top: 15px;
   right: 15px;
@@ -32,6 +54,8 @@ body {
   border-radius: 10px;
   background-color: #000;
   border: 0.5px solid #ccc;
+  transition: all 0.5s;
+  margin-top: 10vh;
 }
 
 #display {
@@ -128,6 +152,7 @@ body {
   flex-direction: row;
   justify-content: space-between;
   text-align: right;
+  transition: width 0.5s;
 }
 
 #footer a {
@@ -144,4 +169,41 @@ body {
 
 #grace-link {
   text-align: left;
+}
+
+@media only screen and (max-width: 550px), (max-height: 600px) {
+  body {
+    background-size: 800px;
+  }
+
+  #drum-machine {
+    transform: scale(0.7);
+    transform-origin: 0%;
+    margin-left: calc(50% - 155px) !important;
+    margin-top: -10vh !important;
+  }
+
+  #footer {
+    width: calc(0.7 * 450px);
+    margin-top: -80px;
+    padding: calc(0.7 * 10px);
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-height: 348px) {
+  #drum-machine {
+    margin-top: 100vh !important;
+    padding-top: 30vh;
+  }
+
+  #footer {
+    padding-bottom: 30vh;
+  }
+}
+
+@media only screen and (min-height: 750px) {
+  body {
+    background-size: 800px;
+  }
 }

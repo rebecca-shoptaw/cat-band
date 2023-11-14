@@ -15,6 +15,7 @@ const CatBand = () => {
   const [vocalsPlaying, setVocalsPlaying] = useState(false);
 
   const portfolio_link = "https://rebeccashoptaw.dev/";
+  const grace_link = "https://www.instagram.com/streh_low/";
 
   const cats = [
     {
@@ -181,7 +182,7 @@ const CatBand = () => {
       <div id="footer">
         <div id="grace-link" className="credits">
           Cats by{" "}
-          <a href="" target="_blank">
+          <a href={grace_link} target="_blank">
             Grace Strehlow
           </a>
         </div>

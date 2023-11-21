@@ -7,8 +7,8 @@
 }
 
 body {
-  background-color: #444;
-  background-image: url("https://cdn.tapetender70er.de/media/image/c2/e7/65/431462-A_Babylone_2880x1440@2x.jpg");
+  background-color: #468;
+  background-image: url("./assets/cat-band-bg.jpg");
   background-blend-mode: multiply;
   background-size: 500px;
   background-attachment: fixed;

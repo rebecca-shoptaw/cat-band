@@ -1,118 +1,43 @@
 import { useState } from "react";
-import INSTRUMENT_DATA from "../data/InstrumentData";
-import links from '../data/Links';
-import CatProps from '../types/Types';
+import Cat from "./Cat";
+
+import { cats } from "../data/InstrumentData";
+import links from "../data/Links";
+import { CatProps, LineupProps } from "../types/Types";
 
 const CatBand = () => {
   const [nowPlaying, setPlaying] = useState("");
-
-  const [bassPlaying, setBassPlaying] = useState(false);
-  const [clarinetPlaying, setClarinetPlaying] = useState(false);
-  const [drumsPlaying, setDrumsPlaying] = useState(false);
-  const [guitarPlaying, setGuitarPlaying] = useState(false);
-  const [percussionPlaying, setPercussionPlaying] = useState(false);
-  const [pianoPlaying, setPianoPlaying] = useState(false);
-  const [saxPlaying, setSaxPlaying] = useState(false);
-  const [vibraphonePlaying, setVibraphonePlaying] = useState(false);
-  const [vocalsPlaying, setVocalsPlaying] = useState(false);
-
-  const cats = [
-    {
-      id: "Q",
-      name: "Boots",
-      role: "sax",
-      arr: INSTRUMENT_DATA.SAX_ARR,
-      func: setSaxPlaying,
-      state_var: saxPlaying,
-    },
-    {
-      id: "W",
-      name: "Ariadne",
-      role: "vocals",
-      arr: INSTRUMENT_DATA.VOCALS_ARR,
-      func: setVocalsPlaying,
-      state_var: vocalsPlaying,
-    },
-    {
-      id: "E",
-      name: "Spots",
-      role: "clarinet",
-      arr: INSTRUMENT_DATA.CLARINET_ARR,
-      func: setClarinetPlaying,
-      state_var: clarinetPlaying,
-    },
-    {
-      id: "A",
-      name: "Mr. Toes",
-      role: "drums",
-      arr: INSTRUMENT_DATA.DRUMS_ARR,
-      func: setDrumsPlaying,
-      state_var: drumsPlaying,
-    },
-    {
-      id: "S",
-      name: "Hermes",
-      role: "bass",
-      arr: INSTRUMENT_DATA.BASS_ARR,
-      func: setBassPlaying,
-      state_var: bassPlaying,
-    },
-    {
-      id: "D",
-      name: "Rexroth",
-      role: "guitar",
-      arr: INSTRUMENT_DATA.GUITAR_ARR,
-      func: setGuitarPlaying,
-      state_var: guitarPlaying,
-    },
-    {
-      id: "Z",
-      name: "Alfie",
-      role: "piano",
-      arr: INSTRUMENT_DATA.PIANO_ARR,
-      func: setPianoPlaying,
-      state_var: pianoPlaying,
-    },
-    {
-      id: "X",
-      name: "Ravioli",
-      role: "percussion",
-      arr: INSTRUMENT_DATA.PERCUSSION_ARR,
-      func: setPercussionPlaying,
-      state_var: percussionPlaying,
-    },
-    {
-      id: "C",
-      name: "Mittens",
-      role: "vibraphone",
-      arr: INSTRUMENT_DATA.VIBRAPHONE_ARR,
-      func: setVibraphonePlaying,
-      state_var: vibraphonePlaying,
-    },
-  ];
+  const [lineup, setLineUp] = useState<LineupProps>({
+    bass: false,
+    clarinet: false,
+    drums: false,
+    guitar: false,
+    percussion: false,
+    piano: false,
+    sax: false,
+    vocals: false,
+    vibraphone: false,
+  });
 
   const stopPlaying = () => {
-    if (document.readyState == "complete") {
       cats.forEach((cat) => {
-        if (cat.state_var) {
+        if (lineup[cat.role]) {
           playPause(cat);
         }
       });
-    } else window.onload = () => stopPlaying();
   };
 
-  const playPause = (cat:CatProps) => {
-    const audio = document.getElementById(cat.id) as HTMLAudioElement;
-    if (audio) {
-      if (audio.paused) {
-        audio.src = cat.arr[Math.floor(Math.random() * cat.arr.length)];
-        audio.play();
+  const playPause = (cat: CatProps) => {
+    if (document.readyState == 'complete') {
+      let newLineUp = lineup;
+      if (!lineup[cat.role]) {
         setPlaying(`${cat.name} on ${cat.role}`);
-        cat.func(true);
+        newLineUp[cat.role] = true;
+        setLineUp(newLineUp);
       } else {
-        audio.pause();
+        newLineUp[cat.role] = false;
         setPlaying("");
-        cat.func(false);
+        setLineUp(newLineUp);
       }
     } else window.onload = () => playPause(cat);
   };
@@ -144,21 +69,11 @@ const CatBand = () => {
             </p>
           </div>
           {cats.map((cat) => (
-            <button
-              id={`${cat.role}-button`}
-              key={cat.id}
-              type="button"
-              className={`drum-pad ${cat.state_var ? "playing" : "paused"}`}
-              onClick={() => playPause(cat)}
-            >
-              <img
-                id={`${cat.role}-cat`}
-                className="cat"
-                src={`./${cat.role}_cat.jpg`}
-              />
-              <audio id={cat.id} className="clip" src={cat.arr[0]} loop></audio>
-              <p>{cat.id}</p>
-            </button>
+            <Cat
+              cat={cat}
+              playing={lineup[cat.role] ? true : false}
+              handleClick={() => playPause(cat)}
+            />
           ))}
           <button
             id=" "

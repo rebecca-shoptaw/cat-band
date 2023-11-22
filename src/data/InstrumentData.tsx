@@ -1,4 +1,4 @@
-const INSTRUMENT_DATA = {
+export const INSTRUMENT_DATA = {
     BASS_ARR: [
         `https://d7d3471nr939s.cloudfront.net/BlueNoteSessions_Noiiz/MP3/Loops/Bass/Upright/90_C_UprightAcBass01_575.mp3?cb=f28cebbb-c6fe-4b83-ac88-3417f9668524`,
         `https://d7d3471nr939s.cloudfront.net/BlueNoteSessions_Noiiz/MP3/Loops/Bass/Upright/90_Bm_UprightAcBass01_575.mp3?cb=48b6d0f1-2736-48fa-bba5-9c6f3fa22665`,
@@ -84,4 +84,65 @@ const INSTRUMENT_DATA = {
       ]
 }
 
-export default INSTRUMENT_DATA;
+export const cats = [
+  {
+    id: "Q",
+    name: "Boots",
+    role: "sax",
+    arr: INSTRUMENT_DATA.SAX_ARR,
+
+  },
+  {
+    id: "W",
+    name: "Ariadne",
+    role: "vocals",
+    arr: INSTRUMENT_DATA.VOCALS_ARR,
+
+  },
+  {
+    id: "E",
+    name: "Spots",
+    role: "clarinet",
+    arr: INSTRUMENT_DATA.CLARINET_ARR,
+ 
+  },
+  {
+    id: "A",
+    name: "Mr. Toes",
+    role: "drums",
+    arr: INSTRUMENT_DATA.DRUMS_ARR,
+ 
+  },
+  {
+    id: "S",
+    name: "Hermes",
+    role: "bass",
+    arr: INSTRUMENT_DATA.BASS_ARR,
+  
+  },
+  {
+    id: "D",
+    name: "Rexroth",
+    role: "guitar",
+    arr: INSTRUMENT_DATA.GUITAR_ARR,
+  
+  },
+  {
+    id: "Z",
+    name: "Alfie",
+    role: "piano",
+    arr: INSTRUMENT_DATA.PIANO_ARR,
+  },
+  {
+    id: "X",
+    name: "Ravioli",
+    role: "percussion",
+    arr: INSTRUMENT_DATA.PERCUSSION_ARR,
+  },
+  {
+    id: "C",
+    name: "Mittens",
+    role: "vibraphone",
+    arr: INSTRUMENT_DATA.VIBRAPHONE_ARR,
+  },
+];

@@ -1,10 +1,18 @@
-interface CatProps {
+import { MouseEventHandler } from "react";
+
+export interface CatProps {
   id: string;
   name: string;
   role: string;
   arr: string[];
-  func: Function;
-  state_var?: boolean;
 }
 
-export default CatProps
+export interface CatCompProps {
+    cat:CatProps,
+    playing:boolean,
+    handleClick:MouseEventHandler
+}
+
+export interface LineupProps {
+    [key:string]:boolean
+}

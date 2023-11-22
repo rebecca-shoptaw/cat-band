@@ -1,5 +1,7 @@
 import { useState } from "react";
-import InstrumentData from "../data/InstrumentData";
+import INSTRUMENT_DATA from "../data/InstrumentData";
+import links from '../data/Links';
+import CatProps from '../types/Types';
 
 const CatBand = () => {
   const [nowPlaying, setPlaying] = useState("");
@@ -14,15 +16,12 @@ const CatBand = () => {
   const [vibraphonePlaying, setVibraphonePlaying] = useState(false);
   const [vocalsPlaying, setVocalsPlaying] = useState(false);
 
-  const portfolio_link = "https://rebeccashoptaw.dev/";
-  const grace_link = "https://www.instagram.com/streh_low/";
-
   const cats = [
     {
       id: "Q",
       name: "Boots",
       role: "sax",
-      arr: InstrumentData.saxArr,
+      arr: INSTRUMENT_DATA.SAX_ARR,
       func: setSaxPlaying,
       state_var: saxPlaying,
     },
@@ -30,7 +29,7 @@ const CatBand = () => {
       id: "W",
       name: "Ariadne",
       role: "vocals",
-      arr: InstrumentData.vocalsArr,
+      arr: INSTRUMENT_DATA.VOCALS_ARR,
       func: setVocalsPlaying,
       state_var: vocalsPlaying,
     },
@@ -38,7 +37,7 @@ const CatBand = () => {
       id: "E",
       name: "Spots",
       role: "clarinet",
-      arr: InstrumentData.clarinetArr,
+      arr: INSTRUMENT_DATA.CLARINET_ARR,
       func: setClarinetPlaying,
       state_var: clarinetPlaying,
     },
@@ -46,7 +45,7 @@ const CatBand = () => {
       id: "A",
       name: "Mr. Toes",
       role: "drums",
-      arr: InstrumentData.drumsArr,
+      arr: INSTRUMENT_DATA.DRUMS_ARR,
       func: setDrumsPlaying,
       state_var: drumsPlaying,
     },
@@ -54,7 +53,7 @@ const CatBand = () => {
       id: "S",
       name: "Hermes",
       role: "bass",
-      arr: InstrumentData.bassArr,
+      arr: INSTRUMENT_DATA.BASS_ARR,
       func: setBassPlaying,
       state_var: bassPlaying,
     },
@@ -62,7 +61,7 @@ const CatBand = () => {
       id: "D",
       name: "Rexroth",
       role: "guitar",
-      arr: InstrumentData.guitarArr,
+      arr: INSTRUMENT_DATA.GUITAR_ARR,
       func: setGuitarPlaying,
       state_var: guitarPlaying,
     },
@@ -70,7 +69,7 @@ const CatBand = () => {
       id: "Z",
       name: "Alfie",
       role: "piano",
-      arr: InstrumentData.pianoArr,
+      arr: INSTRUMENT_DATA.PIANO_ARR,
       func: setPianoPlaying,
       state_var: pianoPlaying,
     },
@@ -78,7 +77,7 @@ const CatBand = () => {
       id: "X",
       name: "Ravioli",
       role: "percussion",
-      arr: InstrumentData.percussionArr,
+      arr: INSTRUMENT_DATA.PERCUSSION_ARR,
       func: setPercussionPlaying,
       state_var: percussionPlaying,
     },
@@ -86,7 +85,7 @@ const CatBand = () => {
       id: "C",
       name: "Mittens",
       role: "vibraphone",
-      arr: InstrumentData.vibraphoneArr,
+      arr: INSTRUMENT_DATA.VIBRAPHONE_ARR,
       func: setVibraphonePlaying,
       state_var: vibraphonePlaying,
     },
@@ -102,14 +101,7 @@ const CatBand = () => {
     } else window.onload = () => stopPlaying();
   };
 
-  const playPause = (cat: {
-    id: string;
-    name: string;
-    role: string;
-    arr: string[];
-    func: Function;
-    state_var?: boolean;
-  }) => {
+  const playPause = (cat:CatProps) => {
     const audio = document.getElementById(cat.id) as HTMLAudioElement;
     if (audio) {
       if (audio.paused) {
@@ -135,7 +127,7 @@ const CatBand = () => {
   return (
     <main>
       <div id="close-btn">
-        <a href={portfolio_link}>
+        <a href={links.PORTFOLIO_LINK}>
           <i className="bi bi-x-lg close-btn" />
         </a>
       </div>
@@ -180,13 +172,13 @@ const CatBand = () => {
         <div id="footer">
           <div id="grace-link" className="credits">
             Cats by{" "}
-            <a href={grace_link} target="_blank">
+            <a href={links.GRACE_LINK} target="_blank">
               Grace Strehlow
             </a>
           </div>
           <div id="portfolio-link" className="credits">
             Site design & coding by <br></br>
-            <a href={portfolio_link} target="_blank">
+            <a href={links.PORTFOLIO_LINK} target="_blank">
               Rebecca Shoptaw
             </a>
           </div>
